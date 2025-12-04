@@ -1,4 +1,4 @@
-# openvote
+# OpenVote
 
 **Delivering Democratic Legitimacy Encoded in the Hardware**
 
