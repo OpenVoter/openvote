@@ -1,15 +1,25 @@
-# OpenVote v0.3  
+# OpenVote v0.3 – Offline Verified Public Voting Architecture
 
-## Offline Verified Public Voting Architecture
+**Status:** Draft – Developer & Manufacturer Review
 
-Status: Draft for developer & manufacturer review  
-Scope: EU 868 MHz, pilot scale (5–100 voters)  
-Last updated: 2025-XX-XX
-Purpose: To define OpenVote as a unified system combining hardware, firmware, cryptography, radio networking, public verification, and adversarial security into a single coherent democratic machine.
+**Scope:** EU 868 MHz, Pilot scale (5–100 voters)  
 
-This document replaces earlier fragmented technical and security drafts with a holistic architecture designed for implementation, manufacturing, and security review.
+**Last updated:** 4-12-25
+
+OpenVote v0.3 is the first complete technical iteration of the project that unifies **hardware, firmware, cryptography, radio networking, public verification, and adversarial governance** into a single coherent voting architecture.
+
+This document is written for:
+- Firmware developers
+- Android developers
+- Hardware manufacturers
+- Security researchers
+
+It intentionally avoids political theory and focuses on **implementation reality**.
+
+---
 
 ## Table of Contents
+
 1. System Purpose & Design Principles  
 2. High-Level System Architecture  
 3. Identity & Authentication Model  
@@ -17,85 +27,75 @@ This document replaces earlier fragmented technical and security drafts with a h
 5. Vote Message Protocol  
 6. Proof-of-Vote System  
 7. Transparent Logging & Public Display  
-8. No Neutral Arbitration Model  
+8. Adversarial (Dual Town Hall) Model – No Neutral Arbitration  
 9. GPS Locality Enforcement  
-10. Android Application  
+10. Android Application Layers  
 11. Adversarial Threat Model Summary  
-12. Operational Modes  
-13. Manufacturing & Developer Integration  
+12. Operational Modes & Use Cases  
+13. Manufacturing & Developer Integration Targets  
 14. What v0.3 Achieves  
-15. Scope of v0.3  
-16. Next Evolution
+15. Scope & Limitations  
+16. Next Evolution Steps  
 
+---
 
-**1. System Purpose & Design Principles**
+## 1. System Purpose & Design Principles
 
-1.1 Purpose
+### 1.1 Purpose
 
-OpenVote is an offline, permissionless, cryptographically authenticated voting system using low-power LoRa mesh networks and public hardware verification to deliver local democratic legitimacy without centralized control.
+OpenVote is an **offline, permissionless, cryptographically authenticated public voting system** built on LoRa mesh networks and hardware-based identity.
 
-1.2 Core Principles
-
-Offline-first (no internet, no SIM, no cloud)
-
-Hardware-rooted identity (cryptographic keys in physical devices)
-
-Public trust ceremonies (unboxing, flashing, first boot)
-
-No neutral arbitration
-
-Adversarial verification (Y-side vs N-side Town Halls)
-
-Public, append-only auditability
-
-Proof-of-Vote returned to every voter
-
-Open-source firmware, app, and protocols
+Its purpose is to enable:
+- Local democratic decision-making  
+- Offline voting with no internet dependency  
+- Public real-time verification  
+- Verifiable outcomes without centralized authorities  
 
 
 
+### 1.2 Core Design Principles
 
-
-**2. High-Level System Architecture**
-
-2.1 Core Components
-
-Voter Node
-
-Android phone (no SIM required)
-
-Wio Tracker L1 (LoRa + GPS)
-
-SoloKey (USB-C authentication key)
-
-USB-C OTG cable
-
-
-Town Hall Node (×2 for redundancy)
-
-Large-screen Android device
-
-Wio Tracker L1 (relay/receiver mode)
-
-SoloKey (election control key)
-
-Public display screen
-
-
-Radio Network
-
-Meshtastic LoRa mesh
-
-EU 868 MHz only (this version)
+- Offline-first  
+- Hardware-rooted identity  
+- Public trust ceremonies  
+- Adversarial verification  
+- No neutral arbitration  
+- Proof-of-Vote for every voter  
+- Open-source firmware, software, and protocols  
+- Don’t trust, verify  
 
 
 
+## 2. High-Level System Architecture
+
+### 2.1 Core Components
+
+| Component | Role | Trusted | Notes |
+|----------|------|----------|------|
+| Android Phone | User interface | ❌ | No private keys |
+| Wio Tracker L1 | LoRa + GPS node | ✅ | Trusted Node ID |
+| SoloKey (USB-C) | Voter identity | ✅ | Stores private key |
+| Town Hall Android Screen | Public display | ❌ | No credentials stored |
 
 
 
-**3. Identity & Authentication Model**
+### 2.2 Architecture Overview (ASCII)
 
-3.1 Dual-Layer Authentication
+```text
+[Voter Phone]
+     │
+     │ USB-C OTG
+     ▼
+[Wio Tracker L1] ◀──── LoRa Mesh ────▶ [Town Hall Tracker]
+     ▲                                         │
+     │ USB-C                                   ▼
+[SoloKey]                             [Town Hall Android Screen]
+
+
+
+##3. Identity & Authentication Model
+
+###3.1 Dual-Layer Authentication
 
 A. Trusted Hardware Layer
 
@@ -121,7 +121,7 @@ Many SoloKeys → One Tracker
 
 
 
-3.2 Root Registrar Key
+###3.2 Root Registrar Key
 
 A designated SoloKey controls:
 
@@ -135,10 +135,9 @@ Election activation credentials
 
 
 
+##4. Public Trust & Supply Chain Security
 
-**4. Public Trust & Supply Chain Security (D3)**
-
-4.1 Digital Democracy Day (D3)
+###4.1 Digital Democracy Day (D3)
 
 Public ceremony including:
 
@@ -155,7 +154,7 @@ Device fingerprint capture
 Entry into Public Hardware Registry
 
 
-4.2 Public Hardware Registry
+###4.2 Public Hardware Registry
 
 GitHub repository (public)
 
@@ -174,9 +173,9 @@ Activation timestamps
 
 
 
-**5. Vote Message Protocol**
+##5. Vote Message Protocol
 
-5.1 Compact Payload Format (≤ 64 bytes)
+###5.1 Compact Payload Format (≤ 64 bytes)
 
 Binary-packed fields:
 
@@ -197,7 +196,7 @@ GPS flag + coarse location
 ECDSA signature (truncated)
 
 
-5.2 Mesh Behavior
+###5.2 Mesh Behavior
 
 Multi-hop LoRa routing
 
@@ -209,7 +208,7 @@ Town Hall P2P ACK + Proof-of-Vote return
 
 
 
-**6. Proof-of-Vote System**
+##6. Proof-of-Vote System
 
 Each valid vote triggers a P2P return message to the voter containing:
 
@@ -234,7 +233,7 @@ Independently verify appearance in the public Town Hall log
 
 
 
-**7. Transparent Logging & Public Display**
+##7. Transparent Logging & Public Display
 
 Town Hall displays:
 
@@ -258,9 +257,9 @@ Exportable via USB
 
 
 
-**8. No Neutral Arbitration Model**
+##8. No Neutral Arbitration Model
 
-8.1 Dual Town Hall Architecture
+###8.1 Dual Town Hall Architecture
 
 Y Team Town Hall
 
@@ -283,7 +282,7 @@ Results must match mathematically. No central referee exists.
 
 
 
-**9. GPS Locality Enforcement**
+##9. GPS Locality Enforcement
 
 Only Trackers with:
 
@@ -305,9 +304,9 @@ Enable geofenced elections
 
 
 
-**10. Android Application (OpenVote App)**
+##10. Android Application (OpenVote App)
 
-10.1 Voter App Features
+###10.1 Voter App Features
 
 SoloKey validation
 
@@ -320,7 +319,7 @@ Proof-of-Vote receipt display
 Public log lookup
 
 
-10.2 Town Hall App Features
+###10.2 Town Hall App Features
 
 Vote ingestion
 
@@ -333,7 +332,7 @@ USB export
 Hash comparison mode
 
 
-10.3 Distribution Model
+###10.3 Distribution Model
 
 USB-only distribution
 
@@ -347,7 +346,7 @@ No internet dependency
 
 
 
-**11. Adversarial Threat Model Summary**
+###11. Adversarial Threat Model Summary
 
 OpenVote assumes:
 
@@ -380,7 +379,7 @@ Don't trust, verify.
 
 
 
-**12. Operational Modes**
+##12. Operational Modes
 
 Single-question referenda
 
@@ -396,16 +395,16 @@ Geofenced community decisions
 
 
 
-**13. Manufacturing & Developer Integration Targets**
+##13. Manufacturing & Developer Integration Targets
 
-13.1 Hardware Partners
+###13.1 Hardware Partners
 
 Seeed Studio (Wio Tracker L1)
 
 SoloKeys (USB-C security keys)
 
 
-13.2 Software Stack
+###13.2 Software Stack
 
 Meshtastic firmware fork
 
@@ -419,7 +418,7 @@ Public registry tooling
 
 
 
-**14. What v0.3 Achieves**
+###14. What v0.3 Achieves
 
 Openvote v0.3 delivers for the first time:
 
@@ -435,7 +434,7 @@ Openvote v0.3 delivers for the first time:
 
 
 
-**15. Scope of v0.3**
+##15. Scope of v0.3
 
 Target voters: 5–100
 
@@ -451,7 +450,7 @@ No internet dependency
 
 
 
-**16. Future updates (work in progress)**
+##16. Future updates (work in progress)
 
 Hardware enclave signing
 
@@ -467,6 +466,6 @@ Disaster-resilient voting modes
 
 
 
-**Summary Statement**
+##Summary Statement##
 
 OpenVote v0.3 is the first complete technical realization of a voting system that removes institutional trust and replaces it with public cryptographic legitimacy, adversarial verification, and physically observable process.
