@@ -1,4 +1,6 @@
-# OpenVote v0.3 – Offline Verified Public Voting Architecture
+# OpenVote v0.3
+
+Offline Verified Public Voting Architecture
 
 **Status:** Draft – Developer & Manufacturer Review
 
