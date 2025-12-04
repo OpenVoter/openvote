@@ -14,7 +14,7 @@ This document is written for:
 - Hardware manufacturers
 - Security researchers
 
-It intentionally avoids political theory and focuses on **implementation reality**.
+It intentionally avoids political theory and focuses on implementation reality.
 
 ---
 
@@ -43,7 +43,7 @@ It intentionally avoids political theory and focuses on **implementation reality
 
 ### 1.1 Purpose
 
-OpenVote is an **offline, permissionless, cryptographically authenticated public voting system** built on LoRa mesh networks and hardware-based identity.
+OpenVote is an offline, permissionless, cryptographically authenticated public voting system built on LoRa mesh networks and hardware-based identity.
 
 Its purpose is to enable:
 - Local democratic decision-making  
