@@ -1,6 +1,7 @@
 # HELP WANTED – OpenVote
 
-OpenVote is an open-source project building **offline, cryptographically verified public voting over LoRa mesh networks**.  
+OpenVote is an open-source project building **offline, cryptographically verified public voting over LoRa mesh networks**.
+
 We are now entering the **first prototype phase** and are actively looking for contributors across software, firmware, hardware, and security.
 
 This is an early-stage project with real-world hardware deployment goals.
