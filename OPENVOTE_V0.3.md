@@ -95,7 +95,7 @@ Its purpose is to enable:
 
 
 
-##3. Identity & Authentication Model
+###3. Identity & Authentication Model
 
 ###3.1 Dual-Layer Authentication
 
