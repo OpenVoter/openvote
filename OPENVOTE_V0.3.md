@@ -93,11 +93,11 @@ Its purpose is to enable:
      │ USB-C                                   ▼
 [SoloKey]                             [Town Hall Android Screen]
 
+###
 
+##3. Identity & Authentication Model
 
-###3. Identity & Authentication Model
-
-###3.1 Dual-Layer Authentication
+##3.1 Dual-Layer Authentication
 
 A. Trusted Hardware Layer
 
