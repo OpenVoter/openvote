@@ -18,7 +18,7 @@ This document is written for:
 
 It intentionally avoids political theory and focuses on implementation reality.
 
----
+
 
 ## Table of Contents
 
@@ -39,7 +39,7 @@ It intentionally avoids political theory and focuses on implementation reality.
 15. Scope & Limitations  
 16. Next Evolution Steps  
 
----
+
 
 ## 1. System Purpose & Design Principles
 
@@ -104,7 +104,7 @@ Its purpose is to enable:
 4. Bluetooth replaces USB link from phone to Tracker; simplifies deployment.  
 5. Town Hall may use **dual Tracker nodes** for redundancy (Y/N oversight).  
 
----
+
 
 ## 3. Voter Flow
 
@@ -122,9 +122,9 @@ Its purpose is to enable:
 - Phone is only the user interface; no credentials are stored.  
 - Only votes from registered Tracker IDs + SoloKeys are accepted.  
 
----
 
-## 4. Town Hall Flow (Updated)
+
+## 4. Town Hall Flow
 
 1. Town Hall Android Screen runs OpenVote Town Hall App.  
 2. Town Hall Tracker L1 receives votes via **LoRa mesh**.  
@@ -143,7 +143,7 @@ Its purpose is to enable:
 - Battery-powered Tracker allows flexible placement; redundancy supports multi-hop mesh reliability.  
 - No internet or Wi-Fi required.  
 
----
+
 
 ## 5. Identity & Authentication Model
 
@@ -157,7 +157,7 @@ Its purpose is to enable:
 - Controls voter registration, Tracker whitelist, election activation  
 - Compromise requires full public re-registration  
 
----
+
 
 ## 6. Public Trust & Supply Chain Security (D3)
 
@@ -165,7 +165,7 @@ Its purpose is to enable:
 - **Public Hardware Registry** – GitHub + offline USB backup, Node IDs, firmware hashes  
 - SHA-256 verification on all firmware & media  
 
----
+
 
 ## 7. Vote Message Protocol
 
@@ -173,14 +173,14 @@ Its purpose is to enable:
 - Includes Election ID, round, Node ID, Credential ID, Y/N vote, timestamp, GPS flag, ECDSA signature  
 - Supports multi-hop LoRa mesh, redundancy, and ACKs  
 
----
+
 
 ## 8. Proof-of-Vote System
 
 - Town Hall sends P2P acknowledgment with vote hash and ✅ symbol  
 - Voter can screenshot or verify against public log  
 
----
+
 
 ## 9. Transparent Logging & Public Display
 
@@ -188,7 +188,7 @@ Its purpose is to enable:
 - Dual Town Halls (Y/N) mirror logs independently  
 - Exportable via USB  
 
----
+
 
 ## 10. Adversarial (Dual Town Hall) Model – No Neutral Arbitration
 
@@ -197,14 +197,14 @@ Its purpose is to enable:
 - Independently validate votes  
 - Matching hashes = valid outcome  
 
----
+
 
 ## 11. GPS Locality Enforcement
 
 - Votes only accepted from Trackers with GPS lock  
 - Ensures **verifiably local voting**  
 
----
+
 
 ## 12. Android Application Layers
 
@@ -212,14 +212,14 @@ Its purpose is to enable:
 - **Town Hall App** – vote ingestion, signature verification, live display, export  
 - Distribution: USB-only, SHA-256 verified, offline-first  
 
----
+
 
 ## 13. Adversarial Threat Model Summary
 
 - Malicious insiders, fake apps, supply-chain tampering, radio jamming, compromised hardware  
 - Security strategy: public trust ceremonies, dual Town Halls, hardware-rooted crypto, proof-of-vote, open verification  
 
----
+
 
 ## 14. Operational Modes & Use Cases
 
@@ -229,14 +229,14 @@ Its purpose is to enable:
 - Family/shared device voting  
 - Geofenced community decisions  
 
----
+
 
 ## 15. Manufacturing & Developer Integration Targets
 
 - **Hardware**: Wio Tracker L1, SoloKeys USB-C  
 - **Software**: Meshtastic firmware fork, Android Voter + Town Hall Apps, Public Registry tooling  
 
----
+
 
 ## 16. What v0.3 Achieves
 
@@ -247,7 +247,7 @@ Its purpose is to enable:
 - Transparent live verification  
 - No neutral arbitration  
 
----
+
 
 ## 17. Scope & Limitations
 
@@ -256,7 +256,7 @@ Its purpose is to enable:
 - Not designed for national elections  
 - Offline-only  
 
----
+
 
 ## 18. Next Evolution Steps
 
@@ -266,6 +266,6 @@ Its purpose is to enable:
 - Disaster-resilient voting  
 - Multi-community mesh federation  
 
----
+
 
 **End of OpenVote v0.3**
