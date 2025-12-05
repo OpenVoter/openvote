@@ -93,381 +93,179 @@ Its purpose is to enable:
      │ USB-C                                   ▼
 [SoloKey]                             [Town Hall Android Screen]
 
-###
+```
 
-##3. Identity & Authentication Model
 
-##3.1 Dual-Layer Authentication
+### 2.3 Key Notes
 
-A. Trusted Hardware Layer
+1. **Phone is interface only**; no credentials stored.  
+2. **Tracker battery** enables untethered voting.  
+3. **SoloKey** is inserted directly into Tracker; only then can a vote be signed.  
+4. Bluetooth replaces USB link from phone to Tracker; simplifies deployment.  
+5. Town Hall may use **dual Tracker nodes** for redundancy (Y/N oversight).  
 
-Each Tracker has a unique Node ID
+---
 
-Only registered Trackers may transmit votes
+## 3. Voter Flow
 
+1. OpenVote Voter App runs on Android phone.  
+2. Phone connects to Wio Tracker L1 via **Bluetooth**.  
+3. Voter inserts their **SoloKey** into Tracker USB-C port.  
+4. App displays current election(s). Voter selects their choice (Y/N).  
+5. Tracker signs the vote using **SoloKey private key**.  
+6. Tracker sends signed vote over the **LoRa mesh network** to Town Hall node(s).  
+7. Voter receives **Proof-of-Vote** acknowledgment from Town Hall (displayed on phone).  
+8. Optional: voter screenshots acknowledgment for personal record.  
 
+**Key Notes:**
+- Tracker operates **on its own battery**, independent of the phone.  
+- Phone is only the user interface; no credentials are stored.  
+- Only votes from registered Tracker IDs + SoloKeys are accepted.  
 
-B. Personal Credential Layer
+---
 
-Each voter holds a SoloKey
+## 4. Town Hall Flow (Updated)
 
-SoloKey stores private key
+1. Town Hall Android Screen runs OpenVote Town Hall App.  
+2. Town Hall Tracker L1 receives votes via **LoRa mesh**.  
+3. Tracker forwards votes to the Android app via **Bluetooth**.  
+4. Town Hall app verifies:
+   - Tracker Node ID  
+   - Credential public key registration  
+   - GPS locality (if enforced)  
+   - Signature validity  
+5. Votes are logged in **public append-only record**.  
+6. **Proof-of-Vote acknowledgment** sent back to originating Tracker.  
+7. Dual Town Halls (Y/N teams) independently log and display votes for **transparent verification**.  
 
-Public key registered to voter ID
+**Key Notes:**
+- USB-C on Town Hall Tracker may optionally hold **Registrar SoloKey** to activate elections.  
+- Battery-powered Tracker allows flexible placement; redundancy supports multi-hop mesh reliability.  
+- No internet or Wi-Fi required.  
 
-Family/shared-device use case supported:
+---
 
-Many SoloKeys → One Tracker
+## 5. Identity & Authentication Model
 
+### 5.1 Dual-Layer Authentication
 
+1. **Trusted Hardware Layer** – registered Tracker Node IDs  
+2. **Personal Credential Layer** – SoloKey private keys, public key registry  
 
+### 5.2 Root Registrar Key
 
+- Controls voter registration, Tracker whitelist, election activation  
+- Compromise requires full public re-registration  
 
-###3.2 Root Registrar Key
+---
 
-A designated SoloKey controls:
+## 6. Public Trust & Supply Chain Security (D3)
 
-Voter credential registration
+- **Digital Democracy Day (D3)** – public unboxing, firmware flash, first boot  
+- **Public Hardware Registry** – GitHub + offline USB backup, Node IDs, firmware hashes  
+- SHA-256 verification on all firmware & media  
 
-Tracker whitelist
+---
 
-Election activation credentials
+## 7. Vote Message Protocol
 
+- Compact payload ≤ 64 bytes  
+- Includes Election ID, round, Node ID, Credential ID, Y/N vote, timestamp, GPS flag, ECDSA signature  
+- Supports multi-hop LoRa mesh, redundancy, and ACKs  
 
+---
 
+## 8. Proof-of-Vote System
 
+- Town Hall sends P2P acknowledgment with vote hash and ✅ symbol  
+- Voter can screenshot or verify against public log  
 
-##4. Public Trust & Supply Chain Security
+---
 
-###4.1 Digital Democracy Day (D3)
+## 9. Transparent Logging & Public Display
 
-Public ceremony including:
+- Live vote stream, running tally, append-only public hash chain  
+- Dual Town Halls (Y/N) mirror logs independently  
+- Exportable via USB  
 
-Device unboxing
+---
 
-Firmware flashing
+## 10. Adversarial (Dual Town Hall) Model – No Neutral Arbitration
 
-First boot
+- Two independent Town Halls  
+- Both receive identical LoRa traffic  
+- Independently validate votes  
+- Matching hashes = valid outcome  
 
-Hash verification (SHA-256)
+---
 
-Device fingerprint capture
+## 11. GPS Locality Enforcement
 
-Entry into Public Hardware Registry
+- Votes only accepted from Trackers with GPS lock  
+- Ensures **verifiably local voting**  
 
+---
 
-###4.2 Public Hardware Registry
+## 12. Android Application Layers
 
-GitHub repository (public)
+- **Voter App** – vote submission, proof-of-vote, log lookup  
+- **Town Hall App** – vote ingestion, signature verification, live display, export  
+- Distribution: USB-only, SHA-256 verified, offline-first  
 
-Password-protected USB mirror (offline backup)
+---
 
-Includes:
+## 13. Adversarial Threat Model Summary
 
-Tracker Node IDs
+- Malicious insiders, fake apps, supply-chain tampering, radio jamming, compromised hardware  
+- Security strategy: public trust ceremonies, dual Town Halls, hardware-rooted crypto, proof-of-vote, open verification  
 
-Firmware hashes
+---
 
-Activation timestamps
+## 14. Operational Modes & Use Cases
 
+- Single-question referenda  
+- Multi-round votes  
+- Emergency community polling  
+- Family/shared device voting  
+- Geofenced community decisions  
 
+---
 
+## 15. Manufacturing & Developer Integration Targets
 
+- **Hardware**: Wio Tracker L1, SoloKeys USB-C  
+- **Software**: Meshtastic firmware fork, Android Voter + Town Hall Apps, Public Registry tooling  
 
+---
 
-##5. Vote Message Protocol
+## 16. What v0.3 Achieves
 
-###5.1 Compact Payload Format (≤ 64 bytes)
+- Offline adversarial voting  
+- Public supply-chain trust  
+- Proof-of-Vote  
+- Family/shared device use  
+- Transparent live verification  
+- No neutral arbitration  
 
-Binary-packed fields:
+---
 
-Election ID (compressed)
+## 17. Scope & Limitations
 
-Voting round
+- Pilot scale (5–100 voters)  
+- EU 868 MHz only  
+- Not designed for national elections  
+- Offline-only  
 
-Tracker Node ID
+---
 
-Credential ID (public key hash)
+## 18. Next Evolution Steps
 
-Vote choice (Y/N)
+- Enclave-based signing  
+- Signature compression for LoRa  
+- Solar-powered Town Hall nodes  
+- Disaster-resilient voting  
+- Multi-community mesh federation  
 
-Timestamp (compressed)
+---
 
-GPS flag + coarse location
-
-ECDSA signature (truncated)
-
-
-###5.2 Mesh Behavior
-
-Multi-hop LoRa routing
-
-Redundant packet broadcast
-
-Town Hall P2P ACK + Proof-of-Vote return
-
-
-
-
-
-##6. Proof-of-Vote System
-
-Each valid vote triggers a P2P return message to the voter containing:
-
-Election ID
-
-Vote hash
-
-Town Hall Node ID
-
-Timestamp
-
-✅ symbol for visual confirmation
-
-
-Voter can:
-
-Screenshot confirmation
-
-Independently verify appearance in the public Town Hall log
-
-
-
-
-
-##7. Transparent Logging & Public Display
-
-Town Hall displays:
-
-Live vote stream
-
-Running tally
-
-Public hash chain
-
-
-Logs are:
-
-Append-only
-
-Time-ordered
-
-Exportable via USB
-
-
-
-
-
-
-##8. No Neutral Arbitration Model
-
-###8.1 Dual Town Hall Architecture
-
-Y Team Town Hall
-
-N Team Town Hall
-
-
-Both:
-
-Receive identical radio traffic
-
-Independently validate
-
-Independently tally
-
-Independently publish final vote hashes
-
-
-Results must match mathematically. No central referee exists.
-
-
-
-
-##9. GPS Locality Enforcement
-
-Only Trackers with:
-
-GPS fix
-
-Approved geographic region can submit votes.
-
-
-
-Used to:
-
-Prevent remote replay
-
-Enforce local residency
-
-Enable geofenced elections
-
-
-
-
-
-##10. Android Application (OpenVote App)
-
-###10.1 Voter App Features
-
-SoloKey validation
-
-Election selection
-
-Vote casting
-
-Proof-of-Vote receipt display
-
-Public log lookup
-
-
-###10.2 Town Hall App Features
-
-Vote ingestion
-
-Signature validation
-
-Live display
-
-USB export
-
-Hash comparison mode
-
-
-###10.3 Distribution Model
-
-USB-only distribution
-
-Public SHA-256 verification
-
-No app stores
-
-No internet dependency
-
-
-
-
-
-###11. Adversarial Threat Model Summary
-
-OpenVote assumes:
-
-Malicious insiders
-
-Compromised hardware
-
-Jammed radios
-
-Fake apps
-
-Supply chain tampering
-
-
-Security strategy:
-
-Public trust ceremonies
-
-Dual adversarial Town Halls
-
-Hardware-rooted cryptography
-
-Proof-of-Vote
-
-Open source app and firmware 
-
-Don't trust, verify.
-
-
-
-
-
-##12. Operational Modes
-
-Single-question referenda
-
-Multi-round votes
-
-Emergency votes
-
-Family/shared-device voting
-
-Geofenced community decisions
-
-
-
-
-
-##13. Manufacturing & Developer Integration Targets
-
-###13.1 Hardware Partners
-
-Seeed Studio (Wio Tracker L1)
-
-SoloKeys (USB-C security keys)
-
-
-###13.2 Software Stack
-
-Meshtastic firmware fork
-
-OpenVote Android app
-
-Town Hall display software
-
-Public registry tooling
-
-
-
-
-
-###14. What v0.3 Achieves
-
-Openvote v0.3 delivers for the first time:
-
-✅ Unified hardware + crypto + radio + legitimacy
-✅ Offline adversarial voting
-✅ Public supply chain trust
-✅ Proof-of-Vote
-✅ No neutral arbitration
-✅ Family & shared-device voting
-✅ Transparent real-time verification
-
-
-
-
-
-##15. Scope of v0.3
-
-Target voters: 5–100
-
-Geography: EU 868 MHz
-
-Pilot-scale, community governance
-
-Not for national elections
-
-No internet dependency
-
-
-
-
-
-##16. Future updates (work in progress)
-
-Hardware enclave signing
-
-Vote compression improvements
-
-Multi-community mesh interlinks
-
-Solar Town Hall nodes
-
-Disaster-resilient voting modes
-
-
-
-
-
-##Summary Statement##
-
-OpenVote v0.3 is the first complete technical realization of a voting system that removes institutional trust and replaces it with public cryptographic legitimacy, adversarial verification, and physically observable process.
+**End of OpenVote v0.3**
