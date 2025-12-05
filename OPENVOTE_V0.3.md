@@ -86,7 +86,7 @@ Its purpose is to enable:
 ```text
 [Voter Phone]
      │
-     │ USB-C OTG
+     │ Bluetooth 
      ▼
 [Wio Tracker L1] ◀──── LoRa Mesh ────▶ [Town Hall Tracker]
      ▲                                         │
