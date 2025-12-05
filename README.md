@@ -1,6 +1,6 @@
 # OpenVote
 
-**Delivering Democratic Legitimacy Encoded in the Hardware**
+## Delivering Democratic Legitimacy Encoded in the Hardware
 
 The ability to decide and to vote is fundamental to any functioning society. Yet across the world, growing numbers of people feel alienated from political systems that appear distant, unresponsive, opaque, and unchangeable. Voting often happens infrequently, through processes few truly understand, and too often delivers outcomes that feel like “more of the same”—regardless of which option wins.
 
@@ -20,7 +20,7 @@ It is a community-owned voting system that runs entirely offline, powered by low
 
 
 
-**From Institutional Trust to Mechanical Legitimacy**
+## From Institutional Trust to Mechanical Legitimacy
 
 Traditional elections are built on the idea of neutral arbitration:
 
@@ -58,7 +58,7 @@ With OpenVote trust is not placed in institutions. It is derived from physical v
 
 
 
-**No Neutral Arbitration**
+## No Neutral Arbitration
 
 In OpenVote:
 
@@ -86,7 +86,7 @@ This is not neutrality by authority. It is fairness enforced by architecture.
 
 
 
-**Public Participation as the Root of Trust**
+## Public Participation as the Root of Trust
 
 OpenVote treats public participation in the technical process itself as the foundation of legitimacy.
 
@@ -109,7 +109,7 @@ This process—known as Digital Democracy Day (D3) ensures that trust does not b
 
 
 
-**Transparent Voting Without Central Control**
+## Transparent Voting Without Central Control
 
 When a citizen votes with OpenVote:
 
@@ -141,7 +141,7 @@ Results are not trusted because someone says they are correct. They are trusted 
 
 
 
-**Why OpenVote Exists**
+## Why OpenVote Exists
 
 OpenVote exists because:
 
@@ -178,8 +178,10 @@ It enables:
 
 
 
-**One Core Principle**
+## One Core Principle
 
 OpenVote does not ask for trust - it makes trust unnecessary.
 
 By encoding democratic legitimacy directly into hardware, radio networks, and public cryptographic process, OpenVote transforms voting from a matter of belief into a matter of verifiable physical reality.
+
+**End of README**
