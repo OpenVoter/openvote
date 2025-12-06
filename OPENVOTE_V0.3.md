@@ -238,7 +238,137 @@ Its purpose is to enable:
 
 
 
-## 16. What v0.3 Achieves
+## 16. Result Finalization & Election Immutability
+
+OpenVote does not rely on a single trusted database for election results. Instead, it produces **multiple independent, cryptographically linked public records** that together form a tamper-evident and adversarially verified final result.
+
+### 16.1 Cryptographic Vote Integrity
+
+Every vote is individually protected by:
+
+- SoloKey-based ECDSA signature  
+- Tracker Node ID binding  
+- Election ID and round binding  
+- Timestamp and optional GPS locality flag  
+
+Only correctly signed votes from registered hardware and credentials are accepted. Any modification invalidates the signature immediately.
+
+
+
+### 16.2 Append-Only Public Vote Log
+
+Each Town Hall maintains a **strictly append-only** vote ledger.
+
+Each entry is linked as:
+
+````
+HASH(n) = SHA256(HASH(n-1) + VOTE_DATA)
+
+````
+This creates a continuous cryptographic hash chain where:
+
+- No vote can be edited
+- No vote can be deleted
+- No vote can be reordered
+- Any historical tampering is instantly detectable
+
+This functions as a **local, offline, cryptographic ledger** without any centralized control or internet dependency.
+
+
+
+### 16.3 Dual Town Hall Adversarial Verification
+
+Two independent Town Halls operate simultaneously:
+
+- One operated by the **Y-side**
+- One operated by the **N-side**
+
+Both Town Halls:
+
+- Receive the identical LoRa vote stream
+- Independently verify signatures
+- Independently maintain append-only logs
+
+At finalization:
+
+- If both logs match → the election result is legitimate  
+- If logs differ → tampering is mathematically proven  
+
+This removes the need for neutral arbiters and embeds adversarial verification directly into the architecture.
+
+
+
+### 16.4 Proof-of-Vote (Individual Verification)
+
+Upon successful vote acceptance:
+
+- The Town Hall transmits a P2P Proof-of-Vote acknowledgment via LoRa
+- Includes:
+  - Vote hash  
+  - Election ID  
+  - ✅ confirmation symbol  
+
+Each voter may retain this as a personal receipt and later verify its inclusion in the public log. This enables individual and crowd-sourced auditing.
+
+
+
+### 16.5 Live Public Transparency
+
+During voting:
+
+- Votes are displayed in real time on public Town Hall screens
+- Running totals and ledger growth are visible to all observers
+- No delayed or hidden tabulation phase exists
+
+This prevents:
+
+- Back-room result manipulation  
+- Secret tallying  
+- Post-hoc “result corrections”  
+
+
+
+### 16.6 Offline Archival & Physical Distribution
+
+At the close of voting:
+
+- Final logs are exported via:
+  - USB storage  
+  - SD cards  
+
+- Multiple identical copies are distributed to:
+  - Y-side representatives
+  - N-side representatives
+  - Community observers
+
+All copies remain cryptographically linked and independently verifiable.
+
+
+
+### 16.7 Finalization Condition
+
+An election is considered final and immutable when:
+
+1. Voting is formally closed  
+2. Both Town Hall logs cryptographically match  
+3. Public final hash is displayed and archived  
+4. Offline copies are distributed  
+
+From this point forward, retroactive result manipulation becomes computationally and socially infeasible.
+
+
+
+## Closing Statement 
+
+OpenVote makes election results incorruptible by eliminating hidden computation, removing central control, forcing cryptographic identity onto every vote, duplicating the full counting process between opposing sides and giving every voter their own independent proof of inclusion.  
+
+It doesn’t try to make cheating illegal.
+
+It makes cheating self-exposing.
+
+
+
+## 17. What v0.3 Achieves
 
 - Offline adversarial voting  
 - Public supply-chain trust  
@@ -249,7 +379,7 @@ Its purpose is to enable:
 
 
 
-## 17. Scope & Limitations
+## 18. Scope & Limitations
 
 - Pilot scale (5–100 voters)  
 - EU 868 MHz only  
@@ -258,7 +388,7 @@ Its purpose is to enable:
 
 
 
-## 18. Next Evolution Steps
+## 19. Next Evolution Steps
 
 - Enclave-based signing  
 - Signature compression for LoRa  
