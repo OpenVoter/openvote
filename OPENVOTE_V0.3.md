@@ -89,9 +89,9 @@ Its purpose is to enable:
      │ Bluetooth                               | Bluetooth 
      ▼                                        ▼
 [Wio Tracker L1] ◀──── LoRa Mesh ────▶ [Wio Tracker L1]
-     ▲                                        │
-     |                                         |  USB-C
-     │ USB-C                                   ▼
+     ▲                                        ▲
+     |                                         |  
+     │ USB-C                                   | USB-C
 [SoloKey]                                  [SoloKey]
                                                 
 
