@@ -90,8 +90,12 @@ Its purpose is to enable:
      ▼
 [Wio Tracker L1] ◀──── LoRa Mesh ────▶ [Town Hall Tracker]
      ▲                                         │
+     |                                         |  Bluetooth 
      │ USB-C                                   ▼
 [SoloKey]                             [Town Hall Android Screen]
+                                                |
+                                                | USB
+                                            [SoloKey]
 
 ```
 
