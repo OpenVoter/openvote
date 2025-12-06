@@ -84,18 +84,16 @@ Its purpose is to enable:
 ### 2.2 Architecture Overview (ASCII)
 
 ```text
-[Voter Phone]
-     │
-     │ Bluetooth 
-     ▼
-[Wio Tracker L1] ◀──── LoRa Mesh ────▶ [Town Hall Tracker]
-     ▲                                         │
-     |                                         |  Bluetooth 
+[Voter Phone]                        [Town Hall Android Screen]
+     │                                         |
+     │ Bluetooth                               | Bluetooth 
+     ▼                                        ▼
+[Wio Tracker L1] ◀──── LoRa Mesh ────▶ [Wio Tracker L1]
+     ▲                                        │
+     |                                         |  USB-C
      │ USB-C                                   ▼
-[SoloKey]                             [Town Hall Android Screen]
-                                                |
-                                                | USB
-                                            [SoloKey]
+[SoloKey]                                  [SoloKey]
+                                                
 
 ```
 
@@ -106,23 +104,23 @@ Its purpose is to enable:
 2. **Tracker battery** enables untethered voting.  
 3. **SoloKey** is inserted directly into Tracker; only then can a vote be signed.  
 4. Bluetooth replaces USB link from phone to Tracker; simplifies deployment.  
-5. Town Hall may use **dual Tracker nodes** for redundancy (Y/N oversight).  
+5. Town Hall will use dual Tracker nodes for redundancy (Y/N oversight).  
 
 
 
 ## 3. Voter Flow
 
 1. OpenVote Voter App runs on Android phone.  
-2. Phone connects to Wio Tracker L1 via **Bluetooth**.  
-3. Voter inserts their **SoloKey** into Tracker USB-C port.  
+2. Phone connects to Wio Tracker L1 via Bluetooth.  
+3. Voter inserts their SoloKey.into Tracker USB-C port.  
 4. App displays current election(s). Voter selects their choice (Y/N).  
-5. Tracker signs the vote using **SoloKey private key**.  
-6. Tracker sends signed vote over the **LoRa mesh network** to Town Hall node(s).  
-7. Voter receives **Proof-of-Vote** acknowledgment from Town Hall (displayed on phone).  
+5. Tracker signs the vote using SoloKey private key.  
+6. Tracker sends signed vote over the LoRa mesh network to Town Hall node(s).  
+7. Voter receives Proof-of-Vote acknowledgment from Town Hall (displayed on phone).  
 8. Optional: voter screenshots acknowledgment for personal record.  
 
 **Key Notes:**
-- Tracker operates **on its own battery**, independent of the phone.  
+- Tracker operates on its own battery, independent of the phone.  
 - Phone is only the user interface; no credentials are stored.  
 - Only votes from registered Tracker IDs + SoloKeys are accepted.  
 
@@ -131,19 +129,19 @@ Its purpose is to enable:
 ## 4. Town Hall Flow
 
 1. Town Hall Android Screen runs OpenVote Town Hall App.  
-2. Town Hall Tracker L1 receives votes via **LoRa mesh**.  
-3. Tracker forwards votes to the Android app via **Bluetooth**.  
+2. Town Hall Tracker L1 receives votes via LoRa mesh.  
+3. Tracker forwards votes to the Android app via Bluetooth.  
 4. Town Hall app verifies:
    - Tracker Node ID  
    - Credential public key registration  
    - GPS locality (if enforced)  
    - Signature validity  
-5. Votes are logged in **public append-only record**.  
-6. **Proof-of-Vote acknowledgment** sent back to originating Tracker.  
-7. Dual Town Halls (Y/N teams) independently log and display votes for **transparent verification**.  
+5. Votes are logged in public append-only record.  
+6. Proof-of-Vote acknowledgment sent back to originating Tracker.  
+7. Dual Town Halls (Y/N teams) independently log and display votes for transparent verification.  
 
 **Key Notes:**
-- USB-C on Town Hall Tracker may optionally hold **Registrar SoloKey** to activate elections.  
+- USB-C on Town Hall Tracker holds Registrar SoloKey to activate elections.  
 - Battery-powered Tracker allows flexible placement; redundancy supports multi-hop mesh reliability.  
 - No internet or Wi-Fi required.  
 
@@ -153,8 +151,9 @@ Its purpose is to enable:
 
 ### 5.1 Dual-Layer Authentication
 
-1. **Trusted Hardware Layer** – registered Tracker Node IDs  
-2. **Personal Credential Layer** – SoloKey private keys, public key registry  
+1. **Trusted Hardware Layer** – registered Tracker Node IDs
+2.  
+3. **Personal Credential Layer** – SoloKey private keys, public key registry  
 
 ### 5.2 Root Registrar Key
 
@@ -206,7 +205,7 @@ Its purpose is to enable:
 ## 11. GPS Locality Enforcement
 
 - Votes only accepted from Trackers with GPS lock  
-- Ensures **verifiably local voting**  
+- Ensures verifiably local voting 
 
 
 
@@ -244,7 +243,7 @@ Its purpose is to enable:
 
 ## 16. Result Finalization & Election Immutability
 
-OpenVote does not rely on a single trusted database for election results. Instead, it produces **multiple independent, cryptographically linked public records** that together form a tamper-evident and adversarially verified final result.
+OpenVote does not rely on a single trusted database for election results. Instead, it produces multiple independent, cryptographically linked public records that together form a tamper-evident and adversarially verified final result.
 
 ### 16.1 Cryptographic Vote Integrity
 
@@ -261,7 +260,7 @@ Only correctly signed votes from registered hardware and credentials are accepte
 
 ### 16.2 Append-Only Public Vote Log
 
-Each Town Hall maintains a **strictly append-only** vote ledger.
+Each Town Hall maintains a strictly append-only vote ledger.
 
 Each entry is linked as:
 
@@ -276,7 +275,7 @@ This creates a continuous cryptographic hash chain where:
 - No vote can be reordered
 - Any historical tampering is instantly detectable
 
-This functions as a **local, offline, cryptographic ledger** without any centralized control or internet dependency.
+This functions as a local, offline, cryptographic ledger without any centralized control or internet dependency.
 
 
 
