@@ -177,18 +177,45 @@ It enables:
 
 
 
+## Live Demo & Visual Spec
 
-## One Core Principle
+### Town Hall Public Screen — Interactive Demo (Figma)
+
+Interactive visual specification of the OpenVote Town Hall system, including:
+
+Live YES / NO vote totals
+
+Rejected vote validation counters
+
+Cryptographic audit log
+
+Finalization countdown
+
+Sealed final result certificate
+
+Hidden Registrar Key & Demo Controls (for simulation only)
+
+
+[Open the Interactive Demo in Figma] https://www.figma.com/make/wLV0kIZtnCOXYbuwhFLv1V/Public-Town-Hall-Election-Display?t=CQt5mIvw02fe22mO-20&fullscreen=1
+
+
+### OpenVote Town Hall Demo Video
+
+Watch a 1-minute walkthrough of the public voting display:
+
+Live voting simulation 
+
+Rejected vote categories in real time 
+
+[View Demo Video] https://gateway.pinata.cloud/ipfs/bafybeid5aqjszapyspxgkfjoz33vqvbl7mwc74gu7syfhhl2akoh2filv4
+
+
+
+## Core Principle
 
 OpenVote does not ask for trust - it makes trust unnecessary.
 
 By encoding democratic legitimacy directly into hardware, radio networks, and public cryptographic process, OpenVote transforms voting from a matter of belief into a matter of verifiable physical reality.
-
-### 🎥 OpenVote Town Hall Demo Video
-
-Watch a 1-minute walkthrough of the public voting display:
-
-[View Demo Video]https://gateway.pinata.cloud/ipfs/bafybeid5aqjszapyspxgkfjoz33vqvbl7mwc74gu7syfhhl2akoh2filv4
 
 
 **End of README**
