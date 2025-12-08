@@ -184,4 +184,11 @@ OpenVote does not ask for trust - it makes trust unnecessary.
 
 By encoding democratic legitimacy directly into hardware, radio networks, and public cryptographic process, OpenVote transforms voting from a matter of belief into a matter of verifiable physical reality.
 
+### 🎥 OpenVote Town Hall Demo Video
+
+Watch a 1-minute walkthrough of the public voting display:
+
+[View Demo Video]https://github.com/OpenVoter/openvote/blob/main/screen-20251208-170116~3.mp4
+
+
 **End of README**
