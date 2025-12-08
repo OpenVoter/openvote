@@ -188,7 +188,7 @@ By encoding democratic legitimacy directly into hardware, radio networks, and pu
 
 Watch a 1-minute walkthrough of the public voting display:
 
-[View Demo Video]https://github.com/OpenVoter/openvote/blob/main/screen-20251208-170116~3.mp4
+[View Demo Video]https://gateway.pinata.cloud/ipfs/bafybeid5aqjszapyspxgkfjoz33vqvbl7mwc74gu7syfhhl2akoh2filv4
 
 
 **End of README**
