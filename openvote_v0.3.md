@@ -392,12 +392,8 @@ It makes cheating self-exposing.
 
 ## 19. Next Evolution Steps
 
-- Enclave-based signing  
 - Signature compression for LoRa  
-- Solar-powered Town Hall nodes  
-- Disaster-resilient voting  
+- Solar-powered Town Hall hardware 
 - Multi-community mesh federation  
 
 
-
-**End of OpenVote v0.3**
