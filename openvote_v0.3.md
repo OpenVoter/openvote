@@ -93,6 +93,9 @@ Its purpose is to enable:
      |                                         |  
      │ USB-C                                   | USB-C
 [SoloKey]                                  [SoloKey]
+
+Figure 1 — End-to-end OpenVote Ecosystem Flow (Offline, LoRa-Based)
+
                                                 
 
 ```
