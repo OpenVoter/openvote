@@ -2,9 +2,13 @@
 
 ## Delivering Democratic Legitimacy Encoded in the Hardware
 
-The ability to decide and to vote is fundamental to any functioning society. Yet across the world, growing numbers of people feel alienated from political systems that appear distant, unresponsive, opaque, and unchangeable. Voting often happens infrequently, through processes few truly understand, and too often delivers outcomes that feel like “more of the same”—regardless of which option wins.
+The ability to decide and to vote is fundamental to any functioning society.
 
-Technology has not solved this crisis of trust. In many countries, digital voting systems depend on centralized databases, proprietary software, uninterrupted power, and permanent internet connectivity. High-profile elections—including in the United States—have been affected by equipment failures, contested results, lost ballots, power outages, software errors, and allegations of manipulation. These systems ask citizens to trust institutions, vendors, and invisible backend infrastructure they can neither see nor verify.
+Yet across the world, growing numbers of people feel alienated from political systems that appear distant, unresponsive, opaque, and unchangeable. Voting often happens infrequently, through processes few truly understand, and too often delivers outcomes that feel like “more of the same”—regardless of which option wins.
+
+Technology has not solved this crisis of trust. In many countries, digital voting systems depend on centralized databases, proprietary software, uninterrupted power, and permanent internet connectivity. 
+
+High-profile elections—including in the United States—have been affected by equipment failures, contested results, lost ballots, power outages, software errors, and allegations of manipulation. These systems ask citizens to trust institutions, vendors, and invisible backend infrastructure they can neither see nor verify.
 
 OpenVote takes a completely different approach.
 
