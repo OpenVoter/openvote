@@ -3,6 +3,8 @@
 ![OpenVote Ecosystem](https://green-deliberate-haddock-519.mypinata.cloud/ipfs/bafkreibrizix6mnh2yner43ijb6eosz7uxg6ol2yde47d657smqqypq7ie)
 
 
+OpenVote is an offline, cryptographically verifiable public voting system using LoRa mesh radios, hardware authentication keys, and open-source software
+
 ## Delivering Democratic Legitimacy Encoded in the Hardware
 
 The ability to decide and to vote is fundamental to any functioning society.
