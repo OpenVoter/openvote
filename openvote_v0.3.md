@@ -6,7 +6,7 @@ Offline Verified Public Voting Architecture
 
 **Scope:** EU 868 MHz, Pilot scale (5–100 voters)  
 
-**Last updated:** 4-12-25
+**Last updated:** 9-12-25
 
 OpenVote v0.3 is the first complete technical iteration of the project that unifies **hardware, firmware, cryptography, radio networking, public verification, and adversarial governance** into a single coherent voting architecture.
 
@@ -76,7 +76,7 @@ Its purpose is to enable:
 |----------|------|----------|------|
 | Android Phone | User interface | ❌ | No private keys |
 | Wio Tracker L1 | LoRa + GPS node | ✅ | Trusted Node ID |
-| SoloKey (USB-C) | Voter identity | ✅ | Stores private key |
+| SoloKey (USB-C) | Voter + Registrar identity | ✅ | Stores private key |
 | Town Hall Android Screen | Public display | ❌ | No credentials stored |
 
 
@@ -102,27 +102,26 @@ Its purpose is to enable:
 
 1. **Phone is interface only**; no credentials stored.  
 2. **Tracker battery** enables untethered voting.  
-3. **SoloKey** is inserted directly into Tracker; only then can a vote be signed.  
-4. Bluetooth replaces USB link from phone to Tracker; simplifies deployment.  
-5. Town Hall will use dual Tracker nodes for redundancy (Y/N oversight).  
+3. **SoloKey** is inserted directly into Tracker; only then can a vote be signed or recorded  
+4. Town Hall use dual  screens and Tracker nodes for redundancy (Y/N oversight).  
 
 
 
 ## 3. Voter Flow
 
-1. OpenVote Voter App runs on Android phone.  
+1. OpenVote VM App runs on Android phone.  
 2. Phone connects to Wio Tracker L1 via Bluetooth.  
 3. Voter inserts their SoloKey.into Tracker USB-C port.  
 4. App displays current election(s). Voter selects their choice (Y/N).  
-5. Tracker signs the vote using SoloKey private key.  
-6. Tracker sends signed vote over the LoRa mesh network to Town Hall node(s).  
+5. App signs the vote using SoloKey private key.  
+6. Tracker sends signed vote over the LoRa mesh network to Town Hall Tracker.  
 7. Voter receives Proof-of-Vote acknowledgment from Town Hall (displayed on phone).  
 8. Optional: voter screenshots acknowledgment for personal record.  
 
 **Key Notes:**
 - Tracker operates on its own battery, independent of the phone.  
 - Phone is only the user interface; no credentials are stored.  
-- Only votes from registered Tracker IDs + SoloKeys are accepted.  
+- Only votes from registered SoloKeys are accepted.  
 
 
 
@@ -157,7 +156,7 @@ Its purpose is to enable:
 
 ### 5.2 Root Registrar Key
 
-- Controls voter registration, Tracker whitelist, election activation  
+- Controls voter registration, electoral database, Tracker whitelist, election activation  
 - Compromise requires full public re-registration  
 
 
@@ -213,7 +212,7 @@ Its purpose is to enable:
 
 - **Voter App** – vote submission, proof-of-vote, log lookup  
 - **Town Hall App** – vote ingestion, signature verification, live display, export  
-- Distribution: USB-only, SHA-256 verified, offline-first  
+- App Distribution: USB-only, SHA-256 verified, offline-first  
 
 
 
@@ -237,7 +236,7 @@ Its purpose is to enable:
 ## 15. Manufacturing & Developer Integration Targets
 
 - **Hardware**: Wio Tracker L1, SoloKeys USB-C  
-- **Software**: Meshtastic firmware fork, Android Voter + Town Hall Apps, Public Registry tooling  
+- **Software**: Tracker firmware, Android Voter + Town Hall Apps, Public Registry tooling  
 
 
 
