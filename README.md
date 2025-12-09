@@ -1,7 +1,7 @@
 # OpenVote
 
-![OpenVote 
-Ecosystem(https://gateway.pinata.cloud/ipfs/bafkreibrizix6mnh2yner43ijb6eosz7uxg6ol2yde47d657smqqypq7ie)
+![OpenVote Ecosystem](https://gateway.pinata.cloud/ipfs/bafkreibrizix6mnh2yner43ijb6eosz7uxg6ol2yde47d657smqqypq7ie)
+
 
 ## Delivering Democratic Legitimacy Encoded in the Hardware
 
