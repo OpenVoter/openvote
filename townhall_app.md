@@ -383,9 +383,44 @@ Malformed packet
 [ ] Demo mode / Registrar Key overlay
 
 
+## Appendix: Registrar Key Integration
+
+The Town Hall app  pairs with a Tracker L1 (ESP32-S3) acting as the local registrar device.
+
+A Solokey C is inserted into the Tracker to authorize election operations.
+
+### Features
+
+Registrar Solokey Detection
+
+The Tracker L1 detects insertion/removal of the Registrar Solokey and communicates state changes to the Town Hall app via Bluetooth.
+
+Status indicators now show:
+
+🔐 Registrar Key Required
+
+🔓 Registrar Key Detected
 
 
+Bluetooth Pass-Through Authentication
 
-## Rationale:
+When closing or opening an election, the Town Hall app (running on an android display screen) sends signing requests to the Tracker, which forwards them directly to the Solokey via Bluetooth.
+
+The signed authorization packet is returned via Bluetooth.
+
+LoRa Mesh Integration
+
+LoRa vote packets are received by the Tracker and forwarded to the Town Hall app.
+
+Only registrar actions—open, close, finalize—require the Solokey.
+
+
+### Result
+
+The Town Hall app supports hardware-rooted authorization without adding complexity to the mobile app, relying on the Tracker as a simple USB-HID gateway.
+
+
+### Rationale
+
 The Town Hall app acts as the trusted public ledger, verifying each vote, providing real-time transparency, issuing Proof-of-Vote, and maintaining redundant, adversarial logs to ensure incorruptible election results. Together with Tracker firmware and OpenVote VM apps, it completes the OpenVote offline, cryptographically verified voting ecosystem.
 
