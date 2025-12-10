@@ -193,7 +193,77 @@ Results are not trusted because someone says they are correct. They are trusted 
 
 ## Live Demo & Visual Spec
 
-### Town Hall Public Screen — Interactive Demo (Figma)
+
+This section provides the visual reference and click-through demos for the OpenVote system.
+
+Both components (the Voter VM App and the Town Hall Display App) are shown as static screen sets and interactive Figma prototypes. These mockups demonstrate how the system behaves during a live election session, including key insertion, vote casting, validation, and public result display.
+
+The goal is to give manufacturers, developers, and integrators a clear understanding of the interface, interaction flow, and design principles that define OpenVote’s public-legitimacy aesthetic.
+
+
+### 1. VM App – Static Screen Set
+
+These static screens provide a clear visual walk-through of the OpenVote Voting Machine (VM) app. Each screen represents one stage of the voter flow, allowing developers and manufacturers to understand UI expectations before firmware or app coding begins.
+
+Included Screens:
+
+Home Screen – Minimalist welcome layout showing Tracker + Bluetooth status.
+
+“Insert Solokey” Prompt – Modal popup requiring USB-C key insertion before voting.
+
+YES/NO Vote Screen – Large-font binary choice UI with color-coded buttons.
+
+Sending… – Animated progress indicator simulating LoRa packet transmission.
+
+Vote Accepted + Hash – Proof-of-Vote screen showing the validated vote hash.
+
+Remove Key Prompt – Final reminder to unplug Solokey before returning to Home.
+
+Purpose:
+This static set enables hardware partners, UX designers, and firmware developers to confirm the interaction design and required system states.
+
+![Link to VM Figma screens]https://www.figma.com/make/q1RMUnU1E5uC1RvKin1Wuu/OpenVote-VM-App-Screens?t=76IUGeTROZvSMgGu-20&fullscreen=1
+
+
+
+### 2. Town Hall Display app - Static Screen Set
+
+This set provides the core static screens for the OpenVote Town Hall Display. These mockups illustrate how the public-facing large digital screen will look during each stage of a live voting session.
+
+Each screen represents one stage of the flow, allowing developers and manufacturers to understand UI expectations before firmware or app coding begins.
+
+All screens include a small “DEMO” tag in the top-right corner.
+
+Included Screens:
+
+1. Idle / Welcome Screen - waiting state shown before the Registrar Solokey is inserted. Displays system status - LoRa Mesh, Registrar Key, Tracker ID.
+
+
+2. Registrar Connected - shows authenticated Registrar key, active Bluetooth link, mesh health, and a confirmation that the display is ready to receive votes.
+
+
+3. Incoming Vote (Validation in Progress) - visual indicator of an incoming packet, with signature verification and transport status. Voter ID masked for privacy.
+
+
+4. Vote Accepted - large confirmation icon and short Proof-of-Vote hash. Includes a compact sidebar showing YES / NO / TOTAL counts.
+
+
+5. Updated Totals View - fullscreen results: two large high-contrast blocks (YES / NO) with updated totals.
+
+
+6. Vote Rejected (Invalid Signature) - warning screen showing rejection reason, masked key ID, and a safe amber color scheme. Indicates that the vote packet was discarded.
+
+
+7. End of Session / Voting Closed - lock icon, final YES / NO result summary, and timestamp. Indicates that the Registrar key has been removed and the session is sealed.
+
+These screens communicate the required visual standard for public legitimacy using large readable data blocks, strong contrast, and a ritualized sequence that mirrors cryptographic transparency. 
+
+They also serve as reference material for frontend developers, integrators, and display hardware partners.
+
+![Link to Town Hall Figma screens]https://www.figma.com/make/4uFygikgiSmmJvelLPz7af/OpenVote-Town-Hall-Display?t=G4lETI9S4FbFkYSp-20&fullscreen=1
+
+
+### Town Hall app — Interactive Demo (Figma)
 
 Interactive visual specification of the OpenVote Town Hall system, including:
 
@@ -209,11 +279,10 @@ Sealed final result certificate
 
 Hidden Registrar Key & Demo Controls (for simulation only)
 
+[Link to Interactive Demo in Figma] https://www.figma.com/make/wLV0kIZtnCOXYbuwhFLv1V/Public-Town-Hall-Election-Display?t=CQt5mIvw02fe22mO-20&fullscreen=1
 
-[Open the Interactive Demo in Figma] https://www.figma.com/make/wLV0kIZtnCOXYbuwhFLv1V/Public-Town-Hall-Election-Display?t=CQt5mIvw02fe22mO-20&fullscreen=1
 
-
-### OpenVote Town Hall Demo Video
+### Town Hall app Demo Video
 
 Watch a 1-minute walkthrough of the public voting display:
 
