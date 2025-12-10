@@ -53,8 +53,9 @@ Scope: EU pilot with up to 100 voters, offline verified voting.
 13. Release / distribution
 
 
-14. Appendix — payload examples
+14. Appendix #1: Payload examples
 
+15. Appendix #2: Registrar key integration 
 
 
 
@@ -337,7 +338,7 @@ Optional auto-update from USB if newer version
 
 
 
-## 14. Appendix — payload examples
+## 14. Appendix #1: Payload examples
 
 Incoming vote payload: compact JSON or binary ≤ 240 bytes
 
@@ -362,28 +363,7 @@ Malformed packet
 
 
 
-
-
-## Implementation checklist (starter)
-
-[ ] Android Studio project skeleton
-
-[ ] LoRa interface & message parser
-
-[ ] Append-only hash chain logging
-
-[ ] Rejected vote counters & display
-
-[ ] Proof-of-Vote transmission
-
-[ ] Public screen visualization: vote totals, rejected votes, countdown
-
-[ ] Final certificate screen generation
-
-[ ] Demo mode / Registrar Key overlay
-
-
-## Appendix: Registrar Key Integration
+## Appendix #2: Registrar key integration
 
 The Town Hall app  pairs with a Tracker L1 (ESP32-S3) acting as the local registrar device.
 
@@ -418,6 +398,27 @@ Only registrar actions—open, close, finalize—require the Solokey.
 ### Result
 
 The Town Hall app supports hardware-rooted authorization without adding complexity to the mobile app, relying on the Tracker as a simple USB-HID gateway.
+
+
+
+## Implementation checklist (starter)
+
+[ ] Android Studio project skeleton
+
+[ ] LoRa interface & message parser
+
+[ ] Append-only hash chain logging
+
+[ ] Rejected vote counters & display
+
+[ ] Proof-of-Vote transmission
+
+[ ] Public screen visualization: vote totals, rejected votes, countdown
+
+[ ] Final certificate screen generation
+
+[ ] Demo mode / Registrar Key overlay
+
 
 
 ### Rationale
