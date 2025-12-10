@@ -1,5 +1,5 @@
 
-# OpenVote Town Hall App — OpenVote Architecture 
+# OpenVote Town Hall App — Architecture 
 
 Target device: Android large screen display
 
