@@ -1,5 +1,5 @@
 
-# OpenVote VM App — OpenVote Architecture
+# OpenVote VM App — Architecture
 
 Target device: Android phone (v7+ recommended)
 
