@@ -222,7 +222,7 @@ Remove Key Prompt – Final reminder to unplug Solokey before returning to Home.
 Purpose:
 This static set enables hardware partners, UX designers, and firmware developers to confirm the interaction design and required system states.
 
-![Link to VM Figma screens]https://www.figma.com/make/q1RMUnU1E5uC1RvKin1Wuu/OpenVote-VM-App-Screens?t=76IUGeTROZvSMgGu-20&fullscreen=1
+[Link to VM Figma screens] https://www.figma.com/make/q1RMUnU1E5uC1RvKin1Wuu/OpenVote-VM-App-Screens?t=76IUGeTROZvSMgGu-20&fullscreen=1
 
 
 
@@ -260,7 +260,7 @@ These screens communicate the required visual standard for public legitimacy usi
 
 They also serve as reference material for frontend developers, integrators, and display hardware partners.
 
-![Link to Town Hall Figma screens]https://www.figma.com/make/4uFygikgiSmmJvelLPz7af/OpenVote-Town-Hall-Display?t=G4lETI9S4FbFkYSp-20&fullscreen=1
+[Link to Town Hall Figma screens] https://www.figma.com/make/4uFygikgiSmmJvelLPz7af/OpenVote-Town-Hall-Display?t=G4lETI9S4FbFkYSp-20&fullscreen=1
 
 
 ### Town Hall app — Interactive Demo (Figma)
