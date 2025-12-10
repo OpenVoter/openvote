@@ -51,7 +51,10 @@ Table of contents
 13. Release / distribution (USB sticks / app bundle)
 
 
-14. Appendix — example payloads & JSON messages
+14. Appendix #1: Example payloads & JSON messages
+    
+    
+15. Appendix #2: Voter key integration
 
 
 
@@ -333,7 +336,7 @@ Optionally provide signed APK and SHA-256 hash for verification.
 
 
 
-## 14. Appendix — example payloads & JSON messages
+## 14. Appendix #2 Example payloads & JSON messages
 
 Vote request to Tracker: challenge (32 bytes)
 
@@ -357,6 +360,44 @@ Wrong round
 
 Malformed packet
 
+
+## Appendix #2: Voter key integration
+
+The OpenVote VM app will support secure vote signing through a Solokey C authentication token connected to a Tracker L1 (ESP32-S3) over USB-C.
+
+### Features
+
+Solokey Presence Detection
+
+The paired Tracker L1 automatically detects when a Solokey is inserted or removed.
+
+The VM app displays:
+
+“Insert Solokey”
+
+“Solokey detected”
+
+“Remove Solokey” (after Proof-of-Vote received)
+
+
+Bluetooth Pass-Through Signing
+
+The VM app sends a vote-signing challenge to the Tracker L1 over Bluetooth.
+
+The Tracker forwards the challenge to the Solokey over USB, receives the signature, and returns it to the VM app.
+
+Firmware Compatibility
+
+No full CTAP/FIDO2 stack is required on the Tracker.
+
+Only minimal USB-HID pass-through is used.
+
+Existing ESP32-S3 USB-OTG support makes these additions small and stable.
+
+
+### Result
+
+The VM app achieves hardware-rooted authentication without increasing device complexity, enabling secure vote creation on any standard Android phone.
 
 
 
